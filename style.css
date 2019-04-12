@@ -8,7 +8,7 @@
 .css-accordion-half {
   float: left;
   width: 50%;
-  padding: 0 1em;
+  /* padding: 0 1em; */
 }
 /* Acordeon styles */
 .css-accordion-tab {
@@ -19,16 +19,17 @@
   overflow: hidden;
 }
 .css-accordion-tab input {
-  position: absolute;
+  /* position: absolute;
   opacity: 0;
-  z-index: -1;
+  z-index: -1; */
+  display: none;
 }
 .css-accordion-tab label {
   position: relative;
   display: block;
-  padding: 0 0 0 1em;
-  background: #019208;
-  color: #FFF;
+  padding: 0;
+  background: #FFF;
+  color: #333;
   font-weight: bold;
   line-height: 3;
   cursor: pointer;
@@ -73,9 +74,60 @@
 
 
 /* Styling for OX services */
+.css-accordion-half {
+    width: 100%;
+    max-width: 700px;
+}
+
 .css-accordion-service {
     display: flex;
+    height: 40px;
+    line-height: 40px;
+    
+    /* padding: 5px 0; */
 }
+
 .css-accordion-tab label {
     display: flex;
+}
+
+.css-accordion-tab-content {
+    padding: 0 30px;
+}
+.css-accordion-service-status,
+.css-accordion-group-status {
+    color: #FFF;
+    text-align: center;
+}
+.css-accordion-group-status {
+    width: 80px;
+    min-width: 80px;
+}
+.css-accordion-service-status {
+    width: 66px;
+    min-width: 66px;
+}
+
+.css-accordion-service-status.Up,
+.css-accordion-group-status.Up {
+    background-color: #019208;
+}
+.css-accordion-group-name {
+    height: 48px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+    padding-right: 30px;
+    border-top: 1px solid lightgrey;
+}
+
+.css-accordion-service-name {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+
 }
