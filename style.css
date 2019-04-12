@@ -1,0 +1,133 @@
+/* Pure CSS accordion from: */
+/* https://codepen.io/raubaca/pen/PZzpVe */
+
+/* #status-container {
+  color: #2c3e50;
+  background: #ecf0f1;
+} */
+.css-accordion-half {
+  float: left;
+  width: 50%;
+  /* padding: 0 1em; */
+}
+/* Acordeon styles */
+.css-accordion-tab {
+  position: relative;
+  margin-bottom: 1px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+}
+.css-accordion-tab input {
+  /* position: absolute;
+  opacity: 0;
+  z-index: -1; */
+  display: none;
+}
+.css-accordion-tab label {
+  position: relative;
+  display: block;
+  padding: 0;
+  background: #FFF;
+  color: #333;
+  font-weight: bold;
+  line-height: 3;
+  cursor: pointer;
+}
+.css-accordion-tab-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #FFF;
+  color: #333;
+  -webkit-transition: max-height .css-accordion-35s;
+  -o-transition: max-height .35s;
+  transition: max-height .35s;
+}
+.css-accordion-tab-content p {
+  margin: 1em;
+}
+/* :checked */
+.css-accordion-tab input:checked ~ .css-accordion-tab-content {
+  max-height: 100vh;
+}
+/* Icon */
+.css-accordion-tab label::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  line-height: 3;
+  text-align: center;
+  -webkit-transition: all .35s;
+  -o-transition: all .35s;
+  transition: all .35s;
+}
+.css-accordion-tab input[type=checkbox] + label::after {
+  content: "+";
+}
+.css-accordion-tab input[type=checkbox]:checked + label::after {
+  transform: rotate(315deg);
+}
+
+
+
+/* Styling for OX services */
+.css-accordion-half {
+    width: 100%;
+    max-width: 700px;
+}
+
+.css-accordion-service {
+    display: flex;
+    height: 40px;
+    line-height: 40px;
+    
+    /* padding: 5px 0; */
+}
+
+.css-accordion-tab label {
+    display: flex;
+}
+
+.css-accordion-tab-content {
+    padding: 0 30px;
+}
+.css-accordion-service-status,
+.css-accordion-group-status {
+    color: #FFF;
+    text-align: center;
+}
+.css-accordion-group-status {
+    width: 80px;
+    min-width: 80px;
+}
+.css-accordion-service-status {
+    width: 66px;
+    min-width: 66px;
+}
+
+.css-accordion-service-status.Up,
+.css-accordion-group-status.Up {
+    background-color: #019208;
+}
+.css-accordion-group-name {
+    height: 48px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+    padding-right: 30px;
+    border-top: 1px solid lightgrey;
+}
+
+.css-accordion-service-name {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+
+}
