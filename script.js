@@ -16,24 +16,27 @@ fetch(url)
 // function to convert data to DOM elements and add them to the DOM
 function addDataToDom(data) {
     var container = document.getElementById("status-container");
-    container.appendChild(headerEl(data.overall_status_code, data.overall_status_name, data.last_updated));
+    container.appendChild(headerEl(data.overall_status_name, data.last_updated));
     container.appendChild(accWrapperEl(data.groups));
 }
 
 // create the header to show the overall status of services
-function headerEl(overallStatusCode, overallStatusName, lastUpdated) {
+function headerEl(overallStatusName, lastUpdated) {
     var text;
     var d = new Date(lastUpdated);
     var dOptions = { year: 'numeric', month: 'long', day: 'numeric' }
-    if (overallStatusCode == 0) {
+    if (overallStatusName == "Up") {
         text = "Systems running smoothly as of " + d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
+    } else {
+        text = "Some systems are down as of " + d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
     }
-    var node = document.createElement("div");
+    var node = document.createElement("h3");
     var textnode = document.createTextNode(text);
     node.appendChild(textnode);
     return node;
 }
 
+// create the Dom element for the accordion wrapper
 function accWrapperEl(groups) {
     // create the accordion wrapper
     var wrapper = document.createElement("div");
@@ -48,6 +51,7 @@ function accWrapperEl(groups) {
     return wrapper;
 }
 
+// create the element for each group of services
 function groupEl(g, idx) {
     var tab = document.createElement("div");
     tab.setAttribute('class', 'css-accordion-tab ' + g.status_name);
@@ -58,20 +62,22 @@ function groupEl(g, idx) {
     input.setAttribute('name', 'tabs');
     tab.appendChild(input);
     
+    // create the label
     var label = document.createElement("label");
     label.setAttribute('for', 'tab-'+idx);
     
+    // add status and service name to the label
     var statusLabel = document.createElement("div");
-    statusLabel.setAttribute('class', 'css-accordion-group-status');
+    statusLabel.setAttribute('class', 'css-accordion-group-status ' + g.status_name);
     statusLabel.innerHTML = g.status_name;
     label.appendChild(statusLabel);
     var nameLabel = document.createElement("div");
     nameLabel.setAttribute('class', 'css-accordion-group-name');
     nameLabel.innerHTML = g.name;
     label.appendChild(nameLabel);
-    
     tab.appendChild(label);
     
+    // add the services of the group
     var div = document.createElement("div");
     div.setAttribute('class', 'css-accordion-tab-content');
     g.services.forEach(function (s, i) {
@@ -82,6 +88,7 @@ function groupEl(g, idx) {
     return tab;
 }
 
+// create element for a service
 function servicesEl(s, idx) {
     var div = document.createElement("div");
     div.setAttribute('class', 'css-accordion-service');
