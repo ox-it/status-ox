@@ -1,10 +1,10 @@
 /* Pure CSS accordion from: */
 /* https://codepen.io/raubaca/pen/PZzpVe */
 
-#status-container {
+/* #status-container {
   color: #2c3e50;
   background: #ecf0f1;
-}
+} */
 .css-accordion-half {
   float: left;
   width: 50%;
@@ -68,4 +68,14 @@
 }
 .css-accordion-tab input[type=checkbox]:checked + label::after {
   transform: rotate(315deg);
+}
+
+
+
+/* Styling for OX services */
+.css-accordion-service {
+    display: flex;
+}
+.css-accordion-tab label {
+    display: flex;
 }
