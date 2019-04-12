@@ -1,4 +1,4 @@
-const url = 'http://status.ox.ac.uk/api/services.json';
+const url = 'https://status.ox.ac.uk/api/services.json';
 
 // fetch data from http://status.ox.ac.uk/api/services.json
 fetch(url)
