@@ -110,7 +110,18 @@
 
 .css-accordion-service-status.Up,
 .css-accordion-group-status.Up {
-    background-color: #019208;
+    background-color: #97E982;
+    color: #000;
+}
+.css-accordion-service-status.Partial,
+.css-accordion-group-status.Partial {
+    background-color: #FFC04E;
+    color: #000;
+}
+.css-accordion-service-status.Down,
+.css-accordion-group-status.Down {
+    background-color: #FF7067;
+    color: #000;
 }
 .css-accordion-group-name {
     height: 48px;
