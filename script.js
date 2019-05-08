@@ -27,7 +27,9 @@ function headerEl(overallStatusName, lastUpdated) {
     var dOptions = { year: 'numeric', month: 'long', day: 'numeric' }
     if (overallStatusName == "Up") {
         text = "Systems running smoothly as of " + d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
-    } else {
+    } else if (overallStatusName == "Partial") {
+        text = "Systems partially running as of " + d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
+    } else if (overallStatusName == "Down") {
         text = "Some systems are down as of " + d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
     }
     var node = document.createElement("h3");
