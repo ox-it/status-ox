@@ -117,16 +117,6 @@ function addAnnouncementsToDom(data) {
         if(response.status == 200) {
             return response.json()
             .then( json => {
-                json = [{
-                    message: 'test announcement: Lorem ipsum dolor sit amet, dictas salutatus sit ea, ut alienum honestatis consequuntur mel. Has nulla luptatum ei, id usu dissentias efficiantur. Mel omnium atomorum praesent in, vix no minim error oratio, at est harum audire utamur.',
-                    start_time: "2019-05-14T11:35:06",
-                    end_time: "2019-05-15T10:30:00",
-                    last_modified: "2019-05-15T10:30:00",
-                }, {
-                    message: 'test announcement: Lorem ipsum dolor sit amet, dictas salutatus sit ea. Has nulla luptatum ei, id usu dissentias efficiantur. Mel omnium atomorum praesent in, vix no minim error oratio, at est harum audire utamur.',
-                    start_time: "2019-06-14T11:35:06",
-                    last_modified: "2019-05-15T10:30:00",
-                }]
                 var container = document.getElementById("status-container");
                 var announcementsDiv = document.createElement("div");
                 announcementsDiv.setAttribute('class', 'announcements');
