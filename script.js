@@ -9,7 +9,7 @@ if (window.jQuery) {
 }
 function startScript() {
     // fetch data from http://status.ox.ac.uk/api/services.json
-    fetch(url)
+    window.fetch(url)
     .then( function(response) {
         if(response.status == 200) {
             return response.json()
@@ -128,7 +128,7 @@ function servicesEl(s, idx) {
 function addAnnouncementsToDom(data) {
     const announcementsUrl = 'https://status.ox.ac.uk/api/announcements.json';
 
-    fetch(announcementsUrl)
+    window.fetch(announcementsUrl)
     .then( function (response) {
         if(response.status == 200) {
             return response.json()
