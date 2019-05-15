@@ -1,6 +1,13 @@
 const url = 'https://status.ox.ac.uk/api/services.json';
 
-document.addEventListener("DOMContentLoaded", function(event) { 
+if (window.jQuery) {
+    $( document ).ready(function() {
+        startScript()
+    });
+} else {
+    startScript()
+}
+function startScript() {
     // fetch data from http://status.ox.ac.uk/api/services.json
     fetch(url)
     .then( response => {
@@ -13,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             console.warn('Unable to fetch from', url);
         }
     })
-});
+}
+
 
 // function to convert data to DOM elements and add them to the DOM
 function addDataToDom(data) {
