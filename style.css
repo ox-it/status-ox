@@ -5,6 +5,16 @@
   color: #2c3e50;
   background: #ecf0f1;
 } */
+#status-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.status {
+    padding-right: 50px;
+}
+.status, .announcements {
+    max-width: 500px;
+}
 .css-accordion-half {
   /* float: left; */
   width: 50%;
@@ -76,7 +86,7 @@
 /* Styling for OX services */
 .css-accordion-half {
     width: 100%;
-    max-width: 700px;
+    max-width: 500px;
 }
 
 .css-accordion-service {
@@ -148,7 +158,7 @@
 /* announcements */
 .announcements {
     width: 100%;
-    max-width: 700px;
+    max-width: 500px;
 }
 .announcement-item {
     border-bottom: 1px solid lightgrey;
