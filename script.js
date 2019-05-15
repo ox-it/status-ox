@@ -9,16 +9,8 @@ if (window.jQuery) {
 }
 function startScript() {
     // fetch data from http://status.ox.ac.uk/api/services.json
-    window.fetch(url)
-    .then( function(response) {
-        if(response.status == 200) {
-            return response.json()
-            .then( function (json) {
-                addDataToDom(json);
-            })
-        } else {
-            console.warn('Unable to fetch from', url);
-        }
+    window.jQuery.getJSON(url, function(response) {
+        addDataToDom(response);
     })
 }
 
@@ -128,62 +120,53 @@ function servicesEl(s, idx) {
 function addAnnouncementsToDom(data) {
     const announcementsUrl = 'https://status.ox.ac.uk/api/announcements.json';
 
-    window.fetch(announcementsUrl)
-    .then( function (response) {
-        if(response.status == 200) {
-            return response.json()
-            .then( function (json) {
-                var container = document.getElementById("status-container");
-                var announcementsDiv = document.createElement("div");
-                announcementsDiv.setAttribute('class', 'announcements');
-                var announcementsTitle = document.createElement("h3");
-                announcementsTitle.innerHTML = 'Announcements';
-                announcementsDiv.appendChild(announcementsTitle)
-                
-                var announcementsItems = document.createElement("div");
-                if (json.length) {
-                    var dOptions = { year: 'numeric', month: 'long', day: 'numeric' }
-                    json.forEach( function (an) {
-                        var announcementItem = document.createElement("div");
-                        announcementItem.setAttribute('class', 'announcement-item');
+    window.jQuery.getJSON(announcementsUrl, function (json) {
+        var container = document.getElementById("status-container");
+        var announcementsDiv = document.createElement("div");
+        announcementsDiv.setAttribute('class', 'announcements');
+        var announcementsTitle = document.createElement("h3");
+        announcementsTitle.innerHTML = 'Announcements';
+        announcementsDiv.appendChild(announcementsTitle)
+        
+        var announcementsItems = document.createElement("div");
+        if (json.length) {
+            var dOptions = { year: 'numeric', month: 'long', day: 'numeric' }
+            json.forEach( function (an) {
+                var announcementItem = document.createElement("div");
+                announcementItem.setAttribute('class', 'announcement-item');
 
-                        var d = new Date(an.start_time);
-                        var datesString = d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
-                        if (an.end_time) {
-                            datesString += ' - ';
-                            d = new Date(an.end_time);
-                            datesString += d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
-                        }
-                        var announcementDates = document.createElement("b");
-                        announcementDates.setAttribute('class', 'announcement-date');
-                        announcementDates.innerHTML = datesString;
-                        announcementItem.appendChild(announcementDates)
-
-                        var announcementMessage = document.createElement("div");
-                        announcementMessage.setAttribute('class', 'announcement-message');
-                        announcementMessage.innerHTML = an.message;
-                        announcementItem.appendChild(announcementMessage)
-                        
-                        var announcementModified = document.createElement("div");
-                        announcementModified.setAttribute('class', 'announcement-last-modified');
-                        d = new Date(an.last_modified);
-                        datesString = d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
-                        announcementModified.innerHTML = 'Last update: '+ datesString;
-                        announcementItem.appendChild(announcementModified)
-
-                        announcementsItems.appendChild(announcementItem);
-                    })
-                } else {
-                    announcementsItems.innerHTML = 'No announcements at present'
+                var d = new Date(an.start_time);
+                var datesString = d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
+                if (an.end_time) {
+                    datesString += ' - ';
+                    d = new Date(an.end_time);
+                    datesString += d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
                 }
-                
-                announcementsDiv.appendChild(announcementsItems);
+                var announcementDates = document.createElement("b");
+                announcementDates.setAttribute('class', 'announcement-date');
+                announcementDates.innerHTML = datesString;
+                announcementItem.appendChild(announcementDates)
 
-                container.appendChild(announcementsDiv);
+                var announcementMessage = document.createElement("div");
+                announcementMessage.setAttribute('class', 'announcement-message');
+                announcementMessage.innerHTML = an.message;
+                announcementItem.appendChild(announcementMessage)
+                
+                var announcementModified = document.createElement("div");
+                announcementModified.setAttribute('class', 'announcement-last-modified');
+                d = new Date(an.last_modified);
+                datesString = d.toLocaleTimeString("en-UK") +", "+ d.toLocaleDateString("en-UK", dOptions);
+                announcementModified.innerHTML = 'Last update: '+ datesString;
+                announcementItem.appendChild(announcementModified)
+
+                announcementsItems.appendChild(announcementItem);
             })
         } else {
-            console.warn('Unable to fetch from', url);
+            announcementsItems.innerHTML = 'No announcements at present'
         }
+        
+        announcementsDiv.appendChild(announcementsItems);
+
+        container.appendChild(announcementsDiv);
     })
-    
 }
