@@ -10,10 +10,10 @@ if (window.jQuery) {
 function startScript() {
     // fetch data from http://status.ox.ac.uk/api/services.json
     fetch(url)
-    .then( response => {
+    .then( function(response) {
         if(response.status == 200) {
             return response.json()
-            .then( json => {
+            .then( function (json) {
                 addDataToDom(json);
             })
         } else {
@@ -129,10 +129,10 @@ function addAnnouncementsToDom(data) {
     const announcementsUrl = 'https://status.ox.ac.uk/api/announcements.json';
 
     fetch(announcementsUrl)
-    .then( response => {
+    .then( function (response) {
         if(response.status == 200) {
             return response.json()
-            .then( json => {
+            .then( function (json) {
                 var container = document.getElementById("status-container");
                 var announcementsDiv = document.createElement("div");
                 announcementsDiv.setAttribute('class', 'announcements');
@@ -143,7 +143,7 @@ function addAnnouncementsToDom(data) {
                 var announcementsItems = document.createElement("div");
                 if (json.length) {
                     var dOptions = { year: 'numeric', month: 'long', day: 'numeric' }
-                    json.forEach( an => {
+                    json.forEach( function (an) {
                         var announcementItem = document.createElement("div");
                         announcementItem.setAttribute('class', 'announcement-item');
 
