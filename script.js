@@ -1,17 +1,19 @@
 const url = 'https://status.ox.ac.uk/api/services.json';
 
-// fetch data from http://status.ox.ac.uk/api/services.json
-fetch(url)
-.then( response => {
-    if(response.status == 200) {
-        return response.json()
-        .then( json => {
-            addDataToDom(json);
-        })
-    } else {
-        console.warn('Unable to fetch from', url);
-    }
-})
+document.addEventListener("DOMContentLoaded", function(event) { 
+    // fetch data from http://status.ox.ac.uk/api/services.json
+    fetch(url)
+    .then( response => {
+        if(response.status == 200) {
+            return response.json()
+            .then( json => {
+                addDataToDom(json);
+            })
+        } else {
+            console.warn('Unable to fetch from', url);
+        }
+    })
+});
 
 // function to convert data to DOM elements and add them to the DOM
 function addDataToDom(data) {
