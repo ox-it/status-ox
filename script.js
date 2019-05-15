@@ -16,8 +16,14 @@ fetch(url)
 // function to convert data to DOM elements and add them to the DOM
 function addDataToDom(data) {
     var container = document.getElementById("status-container");
-    container.appendChild(headerEl(data.overall_status_name, data.last_updated));
-    container.appendChild(accWrapperEl(data.groups));
+    var statusDiv = document.createElement("div");
+    statusDiv.setAttribute('class', 'status');
+
+    statusDiv.appendChild(headerEl(data.overall_status_name, data.last_updated));
+    statusDiv.appendChild(accWrapperEl(data.groups));
+    
+    container.appendChild(statusDiv);
+    
     addAnnouncementsToDom();
 }
 
