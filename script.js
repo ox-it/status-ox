@@ -1,7 +1,7 @@
 const url = 'https://status.ox.ac.uk/api/services.json';
 
 if (window.jQuery) {
-    $( document ).ready(function() {
+    window.jQuery( document ).ready(function() {
         startScript()
     });
 } else {
